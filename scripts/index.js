@@ -39,7 +39,7 @@ cardInfo.forEach((card, index) =>{
 })
 
 // @todo: Функция создания карточки
-function createCard(item, removeCard) {
+function createCard(item) {
     // тут создаете карточку и возвращаете ее
 
     const cardElement = cardTemplate.querySelector('.card').cloneNode(true);
