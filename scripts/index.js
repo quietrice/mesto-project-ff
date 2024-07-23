@@ -12,11 +12,11 @@ let placesName = ['Анапа', 'Сызрань', 'Волга', 'Пехорка'
 placesName.forEach(function (item) {
     let index = placesName.indexOf(item);
     const cardElement = cardTemplate.querySelector('.card').cloneNode(true);
+    const resetButton = cardElement.querySelector('.card__delete-button');
+
     cardElement.querySelector('.card__image').src = `./images/place${index+1}.jpg`;
     cardElement.querySelector('.card__description').textContent = item;
-    console.log(item);
 
-    const resetButton = cardElement.querySelector('.card__delete-button');
     resetButton.addEventListener('click', removeCard);
     cardContainer.append(cardElement);
 }
@@ -26,11 +26,8 @@ placesName.forEach(function (item) {
 // @todo: Функция удаления карточки
 
 function removeCard() {
-    console.log('функция удаления');
     let card = this.closest('.card');
     card.remove();
-
-    
 }
 
 // @todo: Вывести карточки на страницу
