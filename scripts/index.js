@@ -3,7 +3,7 @@
 const cardTemplate = document.querySelector('#card-template').content;
 const contentMain = document.querySelector('.content')
 const cardContainer = contentMain.querySelector('.places__list')
-// const cardElement = cardTemplate.querySelector('.card');
+
 
 const placesName = ['Анапа', 'Сызрань', 'Волга', 'Пехорка', 'Екатеринбург', 'Астана'];
 
@@ -29,8 +29,6 @@ const cardInfo = [
 
 ]
 
-
-
 // массив объектов наполняется данными карточек
 cardInfo.forEach((card, index) =>{
     card.placeName = placesName[index];
@@ -39,7 +37,7 @@ cardInfo.forEach((card, index) =>{
 })
 
 // @todo: Функция создания карточки
-function createCard(item) {
+function createCard(item, removeCard) {
     // тут создаете карточку и возвращаете ее
 
     const cardElement = cardTemplate.querySelector('.card').cloneNode(true);
@@ -51,16 +49,14 @@ function createCard(item) {
     const resetButton = cardElement.querySelector('.card__delete-button');
 
     resetButton.addEventListener('click', removeCard);
-    console.log('функция создания карточек использована');
     return cardElement
 }
 
 cardInfo.forEach(function (item) {
     let index = placesName.indexOf(item);
 
-    const newCard = createCard(item);
+    const newCard = createCard(item, removeCard);
     cardContainer.append(newCard);
-    console.log('карточка добавлена');
 }
 )
 // @todo: DOM узлы
@@ -69,7 +65,6 @@ cardInfo.forEach(function (item) {
 function removeCard() {
     let card = this.closest('.card');
     card.remove();
-    console.log('удаление')
 }
 
 // @todo: Вывести карточки на страницу
