@@ -1,8 +1,19 @@
 // @todo: Темплейт карточки
 
 const cardTemplate = document.querySelector('#card-template').content;
-const contentMain = document.querySelector('.content')
-const cardContainer = contentMain.querySelector('.places__list')
+const contentMain = document.querySelector('.content');
+const cardContainer = contentMain.querySelector('.places__list');
+
+// редактирование карточек
+const addCardButton = contentMain.querySelector('.profile__add-button');
+const windowFormAddCard = document.querySelector('.popup_type_new-card');
+
+// лучше отедльно каждой
+// const popupCloseButton = windowFormAddCard.querySelector('.popup__close');
+
+// редактирование профиля
+const editProfileButton = contentMain.querySelector('.profile__edit-button'); 
+const windowEditProfile = document.querySelector('.popup_type_edit')
 
 
 const placesName = ['Анапа', 'Сызрань', 'Волга', 'Пехорка', 'Екатеринбург', 'Астана'];
@@ -28,6 +39,89 @@ const cardInfo = [
     },
 
 ]
+// функции с поп апами
+// открытие поп апа, добавив класс открытия
+// Добавляет закрытие по овелею
+function popupOpenWithButton(element) {
+    element.classList.add("popup_is-opened");
+
+    // element.addEventListener('click', function(evt) {
+    //     console.log(evt.target);
+    //     evt.target.classList.remove("popup_is-opened");
+    // })
+}
+
+// закрытие поп апа, убрав класс открытия
+function popupCloseWithButton(element) {
+    console.log('функция удаления')
+    element.classList.remove("popup_is-opened")
+    
+}
+
+
+
+
+
+// закрытие поп апа, нажав на серую зону
+// function popupCloseWithOverlay(element) {
+//     element
+// }
+
+// открытие формы для добавления карточки
+
+addCardButton.addEventListener('click', function(evt) {
+    // console.log(evt);
+    // console.log(contentMain)
+    // windowFormAddCard.style.display = "flex"
+    popupOpenWithButton(windowFormAddCard);
+})
+
+// popupCloseButton.addEventListener('click', function() {
+//     popupCloseWithButton(windowFormAddCard)
+// })
+
+// popupCloseButton.addEventListener('click', function() {
+//     popupCloseWithButton(windowFormAddCard)
+// })
+
+
+// windowFormAddCard.addEventListener('click', function(evt) {
+
+// })
+
+
+// редактирование профиля
+editProfileButton.addEventListener('click', function() {
+    popupOpenWithButton(windowEditProfile);
+})
+
+// popupCloseButton.addEventListener('click', function() {
+//     popupCloseWithButton(windowFormAddCard)
+// })
+
+// songsContainer.addEventListener('click', function (evt) {
+//     // evt.target.classList.toggle('song__like_active');
+//     if (evt.target.classList.contains('song__like')) {
+//       evt.target.classList.toggle('song__like_active');
+//     }
+//   });
+
+
+windowFormAddCard.addEventListener('click', function(evt) {
+    console.log(evt)
+    if (evt.target.classList.contains('.popup')) {
+        popupCloseWithButton(windowFormAddCard);
+        
+        console.log(windowFormAddCard);
+        console.log('ты черт')
+        // console.log();
+        // console.log();
+        console.log(querySelector('.popup_type_new-card'))
+    }
+})
+
+
+
 
 // массив объектов наполняется данными карточек
 cardInfo.forEach((card, index) =>{
