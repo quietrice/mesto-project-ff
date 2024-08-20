@@ -4,16 +4,22 @@ const cardTemplate = document.querySelector('#card-template').content;
 const contentMain = document.querySelector('.content');
 const cardContainer = contentMain.querySelector('.places__list');
 
+// popup
+// const popup = document.querySelectorAll('.popup');
+
 // редактирование карточек
 const addCardButton = contentMain.querySelector('.profile__add-button');
 const windowFormAddCard = document.querySelector('.popup_type_new-card');
 
-// лучше отедльно каждой
-// const popupCloseButton = windowFormAddCard.querySelector('.popup__close');
+// Массив кнопок закрытия
+const popupCloseButton = document.querySelectorAll('.popup__close');
 
 // редактирование профиля
 const editProfileButton = contentMain.querySelector('.profile__edit-button'); 
 const windowEditProfile = document.querySelector('.popup_type_edit')
+
+// редактирование картинок
+const cardForm = 0;
 
 
 const placesName = ['Анапа', 'Сызрань', 'Волга', 'Пехорка', 'Екатеринбург', 'Астана'];
@@ -41,14 +47,9 @@ const cardInfo = [
 ]
 // функции с поп апами
 // открытие поп апа, добавив класс открытия
-// Добавляет закрытие по овелею
+
 function popupOpenWithButton(element) {
     element.classList.add("popup_is-opened");
-
-    // element.addEventListener('click', function(evt) {
-    //     console.log(evt.target);
-    //     evt.target.classList.remove("popup_is-opened");
-    // })
 }
 
 // закрытие поп апа, убрав класс открытия
@@ -76,18 +77,6 @@ addCardButton.addEventListener('click', function(evt) {
     popupOpenWithButton(windowFormAddCard);
 })
 
-// popupCloseButton.addEventListener('click', function() {
-//     popupCloseWithButton(windowFormAddCard)
-// })
-
-// popupCloseButton.addEventListener('click', function() {
-//     popupCloseWithButton(windowFormAddCard)
-// })
-
-
-// windowFormAddCard.addEventListener('click', function(evt) {
-
-// })
 
 
 // редактирование профиля
@@ -106,18 +95,78 @@ editProfileButton.addEventListener('click', function() {
 //     }
 //   });
 
+// функция убирает видимость
+// function addCloseButton(elementParent, windowContent) {
+//     const popup = document.querySelectorAll('.popup');
+    
+//     console.log('window внизу');
+//     console.log(windowContent)
+//     console.log('функция начата');
+//     console.log('Popup')
+//     console.log(popup);
+//     console.log('elementParent Внизу')
+//     console.log(elementParent);
+    
+//     elementParent.addEventListener('click', (event) => {
+//         console.log('условие на наличие');
+//         event.stopPropagation();
+//         // console.log(event.target in windowContent)
 
-windowFormAddCard.addEventListener('click', function(evt) {
-    console.log(evt)
-    if (evt.target.classList.contains('.popup')) {
-        popupCloseWithButton(windowFormAddCard);
         
-        console.log(windowFormAddCard);
-        console.log('ты черт')
-        // console.log();
-        // console.log();
-        console.log(querySelector('.popup_type_new-card'))
-    }
+//         elementParent.classList.remove("popup_is-opened");
+        
+
+//     })
+
+// }
+
+
+
+const popupList = document.querySelectorAll('.popup');
+console.log('лох пидор');
+
+// function closeFormHandler(event) {
+//     // stopPropogation()
+//     if (((event.target.classList.contains('popup__content')===false)) && ((event.target.classList.contains('popup__input')===false))) {
+//         console.log('условие выполнено  ')
+//         element.classList.remove("popup_is-opened");
+//     }
+// }
+
+function addCloseSpace(element) {
+    console.log('функция есть')
+    element.addEventListener('click', (event) => {
+        if (((event.target.classList.contains('popup__content')===false)) && ((event.target.classList.contains('popup__input')===false))) {
+            console.log('условие выполнено  ')
+            element.classList.remove("popup_is-opened");
+        }
+    });
+    element.addEventListener('keydown' , (event) => {
+        console.log(event);
+        console.log(event.key)
+        if (((event.key === "Escape")) || ((event.key === "Control"))) {
+            
+            element.classList.remove("popup_is-opened");
+        }
+    });
+    
+}
+
+console.log(popupList)
+popupList.forEach((element) => {
+    console.log('Перебор попап')
+    addCloseSpace(element);
+})
+
+
+// popupCloseButton.forEach((element) => {
+//     // нашел родителя
+//     const elementParent = element.parentElement.parentElement
+//     const windowContent = elementParent.querySelector('.popup__content');
+//     addCloseButton(elementParent, windowContent)
+// })
+
+windowFormAddCard.addEventListener('click', (evt) => {
 })
 
 
